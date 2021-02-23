@@ -3,22 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    
   </head>
   <body>
 <div class="login-box">
   <h1>Login</h1>
+
   <div class="textbox">
     <i class="fas fa-user"></i>
-    <input type="text" placeholder="Username">
+    <input type="text" id="usernameInput" placeholder="Username">
   </div>
 
   <div class="textbox">
     <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Password">
+    <input type="password" id="passwordInput" placeholder="Password">
   </div>
 
-  <input type="button" class="btn" value="Sign in">
+  <input type="button" class="btn" id="loginBtn" value="Sign in">
+  <input type="button" class="btn" id="customerBtn" value="Guest">
+
 </div>
+
+
+    <script type="text/javascript" src="login.js"></script>
   </body>
 </html>
