@@ -39,9 +39,9 @@
   }
 
   .current_order {
-      /* float: right; */
+      float: right;
       background-color: aqua;
       padding: 10%;
-      display: table;
+      /* display: table; */
       height: max-content;
   }
