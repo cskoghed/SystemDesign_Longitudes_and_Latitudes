@@ -1850,4 +1850,4 @@ var DB2 = {
             "sortiment": "TSS",
             "ekologisk": "1",
             "koscher": "0"
-        }]
+        }];

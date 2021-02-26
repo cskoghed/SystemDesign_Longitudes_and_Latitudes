@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BEERSnDrinks</title>
+    <!-- <meta http-equiv="refresh" content="5" > -->
+    <title>Longitudes and Latitudes</title>
     <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
     <link rel="stylesheet" href="style.css">
 
@@ -13,62 +15,14 @@
     <script type="text/javascript" src="DBLoaded.js"></script>
     <script type="text/javascript" src="loader.js"></script>
 
+    <script type="text/javascript" src="controller.js"></script>
+
 </head>
 
-<body>
-
-<div class="top_bar">
-    <h2 style="text-align:center;">Menu</h2>
-</div>
-
-<div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'Beers')">Beers</button>
-    <button class="tablinks" onclick="openCity(event, 'Wines')">Wines</button>
-    <button class="tablinks" onclick="openCity(event, 'Spirits')">Spirits</button>
-    <button class="tablinks" onclick="openCity(event, 'Ciders')">Ciders</button>
-    <button class="tablinks" onclick="openCity(event, 'Whisky')">Whisky</button>
-</div>
-
-<div class="menu">
-    <div id="Beers" class="drinkmenu">
-        hej
-    </div>
-    <div id="Wines" class="drinkmenu">
-        på
-    </div>
-    <div id="Spirits" class="drinkmenu">
-        dig
-    </div>
-    <div id="Ciders" class="drinkmenu">
-        åh vad gott
-    </div>
-    <div id="Whisky" class="drinkmenu">
-        !!
-    </div>
-</div>
-
-<div class="current_order">
-    <h2>Your order</h2>
-</div>
-
-
-<script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("drinkmenu");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-</script>
+<div class="content" id="content"></div>
 
 </body>
+
 
 </html>
 
