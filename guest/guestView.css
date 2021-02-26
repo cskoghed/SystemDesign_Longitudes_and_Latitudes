@@ -1,0 +1,46 @@
+html,
+body,
+.grid-container {
+  height: 100%;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.4fr 2.4fr 0.2fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Header Header Header Header"
+    "Main Main Main Sidebar"
+    "Bottom-bar Bottom-bar Bottom-bar Bottom-bar";
+}
+
+.Header {
+  grid-area: Header;
+}
+
+.Main {
+  grid-area: Main;
+}
+
+.Bottom-bar {
+  grid-area: Bottom-bar;
+}
+
+.Sidebar {
+  grid-area: Sidebar;
+}
+
+/* For presentation only, no need to copy the code below */
+.grid-container * {
+  border: 1px solid red;
+  position: relative;
+}
+
+.grid-container *:after {
+  content: attr(class);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
