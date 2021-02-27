@@ -20,14 +20,52 @@ body,
   grid-area: Header;
 }
 
+/* --------------------------- */
+
 .Main {
   grid-area: Main;
+
+  
+}
+
+.table-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-template-areas:
+  "table1 table2"
+  "table3 table4";
+}
+
+#table1 {
+  grid-area: table1;
+}
+
+#table2 {
+  grid-area: table2;
+}
+
+#table3 {
+  grid-area: table3;
+}
+
+#table4 {
+  grid-area: table4;
 }
 
 .Bottom-bar {
   grid-area: Bottom-bar;
 }
 
+/* ----------------- */
 .Sidebar {
   grid-area: Sidebar;
 }
