@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longitudes And Latitudes</title>
+    <script type="text/javascript" src="dragndrop.js"></script>
+    <script type="text/javascript" src="../jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="dragdrop_test_db.js"></script>
+    <link rel="stylesheet" href="dragdrop_test.css">
+</head>
+<body>
+    
+    <div class="grid-container">
+        <div class="Header">
+        </div>
+
+        <div class="Main">
+            <div class="table" id="table1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                1
+                <!--<h1 id="movable" class="test" ondragstart="drag(event)" draggable="true">1kr</h1>-->
+            </div>
+
+            <div class="table" id="table2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                2
+            </div>
+
+            <div class="table" id="table3" ondrop="drop(event)" ondragover="allowDrop(event)">
+                3
+            </div>
+
+            <div class="table" id="table4" ondrop="drop(event)" ondragover="allowDrop(event)">
+                4
+            </div>
+        </div>
+
+        <div class="Bottom-bar">
+        </div>
+        
+        <div class="Sidebar" >
+            <div class="" id="list">
+                                             
+            </div>
+
+           <!-- <h1 id="movable1" class="test" ondragstart="drag(event)" draggable="true">2kr</h1>
+            <h1 id="movable2" class="test" ondragstart="drag(event)" draggable="true">3kr</h1>
+            <h1 id="movable3" class="test" ondragstart="drag(event)" draggable="true">4kr</h1>
+            <h1 id="movable4" class="test" ondragstart="drag(event)" draggable="true">5kr</h1>-->
+        </div>
+    </div>
+    
+</body>
+
+</html>
