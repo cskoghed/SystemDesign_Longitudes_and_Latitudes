@@ -3,6 +3,11 @@ body,
 .grid-container {
   height: 100%;
   margin: 0;
+
+  background: url(bg.jpg) no-repeat center center fixed;
+  /* background-color: grey; */
+  background-size: cover;
+  overflow: hidden;
 }
 
 .grid-container {
@@ -11,13 +16,15 @@ body,
   grid-template-rows: 0.4fr 2.4fr 0.2fr;
   gap: 0px 0px;
   grid-template-areas:
-    "Header Header Header Header"
+    "Header Header Header Sidebar"
     "Main Main Main Sidebar"
-    "Bottom-bar Bottom-bar Bottom-bar Bottom-bar";
+    "Bottom-bar Bottom-bar Bottom-bar Sidebar";
 }
 
 .Header {
   grid-area: Header;
+
+  background-color: rgb(12, 151, 151);
 }
 
 /* --------------------------- */
@@ -30,26 +37,45 @@ body,
 
 .table-container {
   position: relative;
-  width: 400px;
-  height: 400px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-
+  width: 80%;
+  height: 80%;
+  left: 10%;
+  top: 10%;
+  /* transform: translate(-50%,-50%); */
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   /* grid-template-columns: auto auto auto auto; */
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 5px 5px;
+  grid-template-rows: 1fr 1fr;
+  gap: 5;
   grid-template-areas:
-  "table1 table2"
-  "table3 table4";
+    "table1 table2"
+    "table3 table4";
   /* align-items: start; */
+  justify-content: center;
 }
 
 .table {
-  width: 200%;
-  height: 200%;
+  /* width: 200%;
+  height: 200%; */
+  display: flex;
+  justify-content: center;
+  /* object-fit: cover; */
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.tableimg{
+  position: relative;
+  /* margin: 25%; */
+  /* left: 25%;
+  top: 25%; */
+  object-fit: contain;
 }
 
 #table1 {
@@ -60,34 +86,63 @@ body,
 
 #table2 {
   grid-area: table2;
-  left: 100%
 }
 
 #table3 {
   grid-area: table3;
-
-  top: 100%;
 }
 
 #table4 {
   grid-area: table4;
-
-  top: 100%;
-  left: 100%
 }
 
 .Bottom-bar {
   grid-area: Bottom-bar;
+
+  background-color: rgb(12, 151, 151);
 }
 
 /* ----------------- */
 .Sidebar {
   grid-area: Sidebar;
+
+  background-color: grey;
+}
+
+#items {
+  height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* overflow-y: scroll; */
+  overflow: scroll;
+}
+
+.items-list {
+  height: 50%;
+  backface-visibility: hidden;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  color: rgb(82, 82, 82);
+  /* overflow: -moz-hidden-unscrollable; */
+}
+
+/* An item row is a row in the right-most menu. */
+.item-row {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+
+  padding-left: 10px;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  border-bottom: 2px solid rgb(182, 182, 182);
 }
 
 /* For presentation only, no need to copy the code below */
-.grid-container * {
-  border: 1px solid red;
+/* .grid-container * {
+  outline: 1px solid red;
   position: relative;
 }
 
@@ -96,4 +151,4 @@ body,
   position: absolute;
   top: 0;
   left: 0;
-}
+} */

@@ -15,18 +15,42 @@
         <div class="Header"></div>
         <div class="Main">
             <div class="table-container">
-                <div class="table" id="table1"></div>
-                <!-- <img src="table1.png" alt="table1" id="table1"> -->
-                <div class="table" id="table2"></div>
-                <div class="table" id="table3"></div>
-                <div class="table" id="table4"></div>
+                <div class="table" id="table1">
+                    <img src="table1.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                </div>
+                
+                <div class="table" id="table2">
+                    <img src="table2.png" class="tableimg" alt="table2" id="table2img" width="80%" draggable="false">
+                </div>
+                <div class="table" id="table3">
+                    <img src="table3.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                </div>
+                <div class="table" id="table4">
+                    <img src="table4.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                </div>
             </div>
         </div>
+
         <div class="Bottom-bar"></div>
+        
         <div class="Sidebar">
+            <div class="menu-top">
+                <button id="orderBtn" onclick="showTotalCost()">Order</button>
+                <button id="menuBtn">Menu</button>
+                <button id="undoBtn">Undo</button>
+                <button id="redoBtn">Redo</button>
+                <!-- <h1 style="text-align: center;">Menu</h1> -->
+            </div>
+            
+            <div id ="Sidebar-content">
+                <div id="items">
+                    <ol class="items-list" id="bartender-items-list"></ol>
+                </div>
+            </div>
         </div>
     </div>
 
     <script type="text/javascript" src="bartenderController.js"></script>
+    <script type="text/javascript" src="global.js"></script>
 </body>
 </html>
