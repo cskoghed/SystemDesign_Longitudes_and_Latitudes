@@ -10,10 +10,6 @@ function gotoGuest() {
     window.location.href = "guest/guestView.html";
 };
 
-function gotoBartender(){
-    window.location.href = "bartender/bartender.html"
-}
-
 $(window).ready(function() {
     // sessionStorage.setItem('key', 'value');
     // var userMode = sessionStorage.getItem("userMode");
@@ -23,46 +19,46 @@ $(window).ready(function() {
         gotoGuest();
     }
 });
-
-// //Login Controller
-// function openCity(evt, cityName) {
-//     var i, tabcontent, tablinks;
-//     tabcontent = document.getElementsByClassName("drinkmenu");
-//     for (i = 0; i < tabcontent.length; i++) {
-//     tabcontent[i].style.display = "none";
-//     }
-//     tablinks = document.getElementsByClassName("tablinks");
-//     for (i = 0; i < tablinks.length; i++) {
-//     tablinks[i].className = tablinks[i].className.replace(" active", "");
-//     }
-//     document.getElementById(cityName).style.display = "block";
-//     evt.currentTarget.className += " active";
-// };
+ 
+//Login Controller
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("drinkmenu");
+    for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+};
 
 // Login Page Controller
 
 
-// function customer() {
-//     sessionStorage.setItem('userMode', 'Guest');
-//     gotoGuest();
-// }
+function customer() {
+    sessionStorage.setItem('userMode', 'Guest');
+    gotoGuest();
+}
 
-// var bartenders = {
-//     "bartender": "admin"
-// };
+var bartenders = {
+    "bartender": "admin"
+};
 
-// var vips = {
-//     "calle": "skoghed"
-// };
+var vips = {
+    "calle": "skoghed"
+};
 
 // document.getElementById("loginBtn").onclick = function() {login()};
 // document.getElementById("customerBtn").onclick = function() {customer()};
 
-// $('#usernameInput , #passwordInput').keypress(function (e) {
-//     var key = e.which;
-//     if(key == 13)  // the 'enter' key code
-//      {
-//         login();
-//      }
-//   });
+$('#usernameInput , #passwordInput').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the 'enter' key code
+     {
+        login();
+     }
+  });
 

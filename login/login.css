@@ -54,3 +54,9 @@ body{
   cursor: pointer;
   margin: 12px 0;
 }
+
+/* #logo {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 50%;
+} */

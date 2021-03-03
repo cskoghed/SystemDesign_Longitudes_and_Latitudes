@@ -8,7 +8,7 @@ function login() {
     var password = document.getElementById("passwordInput").value;
 
     if (bartenders[username] == password) {
-        window.location.href = "../bartender/bartender.html"
+        userMode = "Bartender";
     } else if (vips[username] == password) {
         userMode = "VIP";
     } else if (username in bartenders || username in vips){
@@ -22,9 +22,8 @@ function login() {
 
 
 function customer() {
-    alert("Unfortunately, this page is not finished.");
-    // sessionStorage.setItem('userMode', 'Guest');
-    // window.location.href = "../guest/guestView.html";
+    sessionStorage.setItem('userMode', 'Guest');
+    window.location.href = "../guest/guestView.html";
     // $('#content').load("../guest/guestView.html");
 }
 
