@@ -1,4 +1,4 @@
-var table_1 = 
+var table1 = 
     {
         "cart" : 
             [
@@ -6,7 +6,7 @@ var table_1 =
             ]
     };
 
-var table_2 = 
+var table2 = 
     {
         "cart" : 
             [
@@ -14,7 +14,7 @@ var table_2 =
             ]
     };
 
-var table_3 = 
+var table3 = 
     {
         "cart" : 
             [
@@ -22,7 +22,7 @@ var table_3 =
             ]
     };
 
-var table_4 = 
+var table4 = 
     {
         "cart" : 
             [
@@ -30,6 +30,12 @@ var table_4 =
             ]
     };
 
+var tables = {
+    "table1": table1,
+    "table2": table2,
+    "table3": table3,
+    "table4": table4
+};
 
 function allowDrop(allowdropevent) {
     allowdropevent.preventDefault();
@@ -46,19 +52,19 @@ function drop(dropevent) {
     switch(id){
         case "table1":
             console.log("1");
-            table_1.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            table1.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
             break;
             
         case "table2":
-            table_2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            table2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
             break;
             
         case "table3":
-            table_3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            table3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
             break;
             
         case "table4":
-            table_4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            table4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
             break;
             
         default:

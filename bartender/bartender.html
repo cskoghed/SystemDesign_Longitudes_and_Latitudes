@@ -16,17 +16,17 @@
         <div class="Main">
             <div class="table-container">
                 <div class="table" id="table1">
-                    <img src="table1.png" id="table1" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="table1.png" id="table1" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="showOrder(event)">
                 </div>
                 
                 <div class="table" id="table2">
-                    <img src="table2.png" id="table2" class="tableimg" alt="table2" id="table2img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="table2.png" id="table2" class="tableimg" alt="table2" id="table2img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="showOrder(event)">
                 </div>
                 <div class="table" id="table3">
-                    <img src="table3.png" id="table3" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="table3.png" id="table3" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="showOrder(event)">
                 </div>
                 <div class="table" id="table4">
-                    <img src="table4.png" id="table4" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="table4.png" id="table4" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)" onclick="showOrder(event)">
                 </div>
             </div>
         </div>
@@ -35,16 +35,21 @@
         
         <div class="Sidebar">
             <div class="menu-top">
-                <button id="orderBtn" onclick="showTotalCost()">Order</button>
-                <button id="menuBtn">Menu</button>
-                <button id="undoBtn">Undo</button>
-                <button id="redoBtn">Redo</button>
+                <!-- <button id="orderBtn" onclick="showTotalCost()">Order</button> -->
+                <button class="sideBarBtn" id="menuBtn" onclick="showMenu()">Menu</button>
+                <button class="sideBarBtn" id="undoBtn">Undo</button>
+                <button class="sideBarBtn" id="redoBtn">Redo</button>
                 <!-- <h1 style="text-align: center;">Menu</h1> -->
             </div>
             
             <div id ="Sidebar-content">
                 <div id="items">
                     <ol class="items-list" id="bartender-items-list"></ol>
+                </div>
+
+                <!-- Gör scrollable precis som items. ex. lägg dem i samma klass -->
+                <div id="order">
+                    <ol class="items-list" id="orderList"></ol>
                 </div>
             </div>
         </div>
