@@ -16,17 +16,17 @@
         <div class="Main">
             <div class="table-container">
                 <div class="table" id="table1">
-                    <img src="table1.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                    <img src="table1.png" id="table1" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
                 
                 <div class="table" id="table2">
-                    <img src="table2.png" class="tableimg" alt="table2" id="table2img" width="80%" draggable="false">
+                    <img src="table2.png" id="table2" class="tableimg" alt="table2" id="table2img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
                 <div class="table" id="table3">
-                    <img src="table3.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                    <img src="table3.png" id="table3" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
                 <div class="table" id="table4">
-                    <img src="table4.png" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false">
+                    <img src="table4.png" id="table4" class="tableimg" alt="table1" id="table1img" width="80%" draggable="false" ondrop="drop(event)" ondragover="allowDrop(event)">
                 </div>
             </div>
         </div>
@@ -51,6 +51,7 @@
     </div>
 
     <script type="text/javascript" src="bartenderController.js"></script>
+    <script type="text/javascript" src="../dragndrop.js"></script>
     <script type="text/javascript" src="global.js"></script>
 </body>
 </html>
