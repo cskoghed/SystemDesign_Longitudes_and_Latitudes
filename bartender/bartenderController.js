@@ -10,11 +10,11 @@ function updateItemsList(db) {
 
         $("#bartender-items-list").append(`
             <li class="item-row">
-                <span style="position: relative;" draggable="true">${beverage.namn}</span>
+                <span style="position: relative;" draggable="true" ondragstart="drag(event)" id="` + "item" + i + `">${beverage.namn}</span>
                 <span style="position: relative; float: right;">${beverage.prisinklmoms} kr</span>
             </li>
         `)
-        
+        $("#item" + i).data("item", JSON.stringify(beverage));
     }
 };
 
