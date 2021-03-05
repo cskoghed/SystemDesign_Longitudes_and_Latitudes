@@ -39,7 +39,7 @@ function showOrder(clickEvent){
 
         $("#orderList").append(`
                 <li class="item-row">
-                    <span style="position: relative;" draggable="true" ondragstart="drag(event)" id="` + "item" + i + `">${beverage.namn}</span>
+                    <span style="position: relative;" draggable="false" ondragstart="drag(event)" id="` + "item" + i + `">${beverage.namn}</span>
                     <span style="position: relative; float: right;">${beverage.prisinklmoms} kr</span>
                 </li>
             `);
