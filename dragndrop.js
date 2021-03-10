@@ -45,13 +45,13 @@ function drag(dragevent) {
     dragevent.dataTransfer.setData("text", $("#" + dragevent.target.id).data("item"));
 }
 
-const createOrderTable = (table) {
+const createOrderTable = (table, dropevent) => {
     const previousTable = table.cart;
 
     return {
         execute() {
             table.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
-        }
+        },
 
         undo() {
             table.cart = previousTable1;
@@ -66,19 +66,19 @@ function drop(dropevent) {
     switch(id){
         case "table1":
             console.log("1");
-            createCommandManager(tables).doCommand(createOrderTable(table1));
+            createCommandManager(tables).doCommand(createOrderTable(table1, ));
             break;
 
         case "table2":
-            table2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            createCommandManager(tables).doCommand(createOrderTable(table2));
             break;
 
         case "table3":
-            table3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            createCommandManager(tables).doCommand(createOrderTable(table3));
             break;
 
         case "table4":
-            table4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            createCommandManager(tables).doCommand(createOrderTable(table4));
             break;
 
         default:
