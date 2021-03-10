@@ -50,7 +50,12 @@
 
                 <!-- Gör scrollable precis som items. ex. lägg dem i samma klass -->
                 <div id="order">
-                    <ol class="items-list" id="orderList"></ol>
+                    <ul class="items-list" id="orderList"></ul>
+                    <div id="orderBar">
+                        <button class="sideBarBtn" id="payBtn" onclick="pay()">Pay</button>
+                        <p id="orderSum"></p>
+                        <!-- <span id="orderSum"></span> -->
+                    </div>
                 </div>
             </div>
         </div>

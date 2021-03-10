@@ -3,6 +3,11 @@ var table1 =
         "cart" : 
             [
 
+            ],
+        
+        "amount" :
+            [
+
             ]
     };
 
@@ -11,6 +16,11 @@ var table2 =
         "cart" : 
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -19,6 +29,11 @@ var table3 =
         "cart" : 
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -27,7 +42,12 @@ var table4 =
         "cart" : 
             [
 
-            ]
+            ],
+        
+        "amount" :
+            {
+
+            }
     };
 
 var tables = {
@@ -49,22 +69,49 @@ function drop(dropevent) {
     dropevent.preventDefault();
     
     var id = dropevent.target.id;
+
+    let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
+    // console.log(beverage.namn);
+    // console.log(typeof(beverage));
+    namn = beverage.namn
     switch(id){
         case "table1":
-            console.log("1");
-            table1.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            // console.log("1");
+            if ((namn in table1.amount)){
+                table1.amount[namn] +=1;
+            }else{
+                table1.cart.push(beverage);
+                table1.amount[namn] = 1;
+            }
+            
+            
             break;
             
         case "table2":
-            table2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            if ((namn in table2.amount)){
+                table2.amount[namn] +=1;
+            }else{
+                table2.cart.push(beverage);
+                table2.amount[namn] = 1;
+            }
             break;
             
         case "table3":
-            table3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            if ((namn in table3.amount)){
+                table3.amount[namn] +=1;
+            }else{
+                table3.cart.push(beverage);
+                table3.amount[namn] = 1;
+            }
             break;
             
         case "table4":
-            table4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            if ((namn in table4.amount)){
+                table4.amount[namn] +=1;
+            }else{
+                table4.cart.push(beverage);
+                table4.amount[namn] = 1;
+            }
             break;
             
         default:
