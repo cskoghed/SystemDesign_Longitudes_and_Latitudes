@@ -3,6 +3,11 @@ var table1 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+
             ]
     };
 
@@ -11,6 +16,11 @@ var table2 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -19,6 +29,11 @@ var table3 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -27,7 +42,12 @@ var table4 =
         "cart" :
             [
 
-            ]
+            ],
+        
+        "amount" :
+            {
+
+            }
     };
 
 var tables = {
@@ -50,7 +70,12 @@ const createOrderTable = (table, dropevent) => {
 
     return {
         execute() {
-            table.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            if ((namn in table1.amount)){
+                table1.amount[namn] +=1;
+            }else{
+                table1.cart.push(beverage);
+                table1.amount[namn] = 1;
+            }
         },
 
         undo() {
@@ -63,6 +88,11 @@ function drop(dropevent) {
     dropevent.preventDefault();
 
     var id = dropevent.target.id;
+
+    let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
+    // console.log(beverage.namn);
+    // console.log(typeof(beverage));
+    namn = beverage.namn
     switch(id){
         case "table1":
             console.log("1");

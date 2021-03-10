@@ -8,6 +8,7 @@ function login() {
     var password = document.getElementById("passwordInput").value;
 
     if (bartenders[username] == password) {
+        
         window.location.href = "../bartender/bartender.html"
     } else if (vips[username] == password) {
         userMode = "VIP";
@@ -20,6 +21,11 @@ function login() {
     }
 }
 
+function saveInfo(username, password, language){
+    sessionStorage.setItem("username") = username;
+    sessionStorage.setItem("password") = password;
+    sessionStorage.setItem("language") = language;
+}
 
 function customer() {
     alert("Unfortunately, this page is not finished.");

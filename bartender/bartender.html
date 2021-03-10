@@ -12,7 +12,8 @@
 <body>
 
     <div class="grid-container">
-        <div class="Header"></div>
+        <div class="Header">
+            <button class="sideBarBtn" id="langBtn" onclick="changeLang()">Language</button></div>
         <div class="Main">
             <div class="table-container">
                 <div class="table" id="table1">
@@ -49,7 +50,12 @@
 
                 <!-- Gör scrollable precis som items. ex. lägg dem i samma klass -->
                 <div id="order">
-                    <ol class="items-list" id="orderList"></ol>
+                    <ul class="items-list" id="orderList"></ul>
+                    <div id="orderBar">
+                        <button class="sideBarBtn" id="payBtn" onclick="pay()">Pay</button>
+                        <p id="orderSum"></p>
+                        <!-- <span id="orderSum"></span> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,5 +64,6 @@
     <script type="text/javascript" src="bartenderController.js"></script>
     <script type="text/javascript" src="../dragndrop.js"></script>
     <script type="text/javascript" src="global.js"></script>
+    <script type="text/javascript" src="../dictionary.js"></script>
 </body>
 </html>

@@ -118,7 +118,7 @@ body,
 }
 
 .items-list {
-  height: 50%;
+  height: 85vh;
   backface-visibility: hidden;
   list-style-position: inside;
   margin: 0;
@@ -153,6 +153,68 @@ body,
   /* border-bottom: 2px solid rgb(182, 182, 182); */
   /* border-top: 1px solid rgb(182, 182, 182); */
   border-bottom: 2px solid rgb(182, 182, 182);
+}
+
+#orderList{
+  list-style-type: none;
+}
+
+.amtBox{
+  border-width: 2px;
+  border-color: darkgray;
+  resize: none;
+  margin: 0px;
+  height: 15px;
+  width: 30px;
+}
+
+.menuTop {
+  background-color: aliceblue;
+  padding: 5%;
+  /* height: 10vh; */
+}
+
+.sideBarBtn {
+  background-color: #4be0a2;
+  border-width: 2px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: black;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+#orderBar {
+  /* z-index: 5;
+  position: relative; */
+  /* height: 11vh; */
+  position: fixed;
+  /* width: inherit; */
+
+  /* padding: 5%; */
+  border-top: white solid;
+  width: 25vw;
+  font-size: 22px;;
+  bottom: 0px;
+  right: 0px;
+  background-color: grey;
+  text-align: center;
+
+}
+
+/* #orderSum {
+  float: center;
+  top: 
+  transform: translate(-10%, -45%);*
+} */
+
+#payBtn {
+  float: left;
 }
 
 /* For presentation only, no need to copy the code below */
