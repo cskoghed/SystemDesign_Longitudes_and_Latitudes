@@ -3,6 +3,11 @@ var table1 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+
             ]
     };
 
@@ -11,6 +16,11 @@ var table2 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -19,6 +29,11 @@ var table3 =
         "cart" :
             [
 
+            ],
+        
+        "amount" :
+            [
+                
             ]
     };
 
@@ -27,7 +42,12 @@ var table4 =
         "cart" :
             [
 
-            ]
+            ],
+        
+        "amount" :
+            {
+
+            }
     };
 
 var tables = {
@@ -64,22 +84,48 @@ const createOrderTable = (table, dropevent) => {
 function drop(dropevent) {
     dropevent.preventDefault();
     var id = dropevent.target.id;
+
+    let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
+    // console.log(beverage.namn);
+    // console.log(typeof(beverage));
+    namn = beverage.namn
     switch(id){
         case "table1":
-            console.log("1");
-            createCommandManager(tables).doCommand(createOrderTable(table1, dropevent));
+            // console.log("1");
+            if ((namn in table1.amount)){
+                table1.amount[namn] +=1;
+            }else{
+                createCommandManager(tables).doCommand(createOrderTable(table1, dropevent));
+                table1.amount[namn] = 1;
+            }
             break;
 
         case "table2":
-            createCommandManager(tables).doCommand(createOrderTable(table2, dropevent));
+            if ((namn in table2.amount)){
+                table2.amount[namn] +=1;
+            }else{
+                createCommandManager(tables).doCommand(createOrderTable(table2, dropevent));
+                table2.amount[namn] = 1;
+            }
             break;
 
         case "table3":
-            createCommandManager(tables).doCommand(createOrderTable(table3, dropevent));
+            if ((namn in table3.amount)){
+                table3.amount[namn] +=1;
+            }else{
+                createCommandManager(tables).doCommand(createOrderTable(table3, dropevent));
+                //table3.cart.push(beverage);
+                table3.amount[namn] = 1;
+            }
             break;
 
         case "table4":
-            createCommandManager(tables).doCommand(createOrderTable(table4, dropevent));
+            if ((namn in table4.amount)){
+                table4.amount[namn] +=1;
+            }else{
+                createCommandManager(tables).doCommand(createOrderTable(table4, dropevent));
+                table4.amount[namn] = 1;
+            }
             break;
 
         default:

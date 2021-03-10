@@ -1,4 +1,4 @@
-var language = 'en';
+var language = "en";
 
 var dict = {
     'en' : {
@@ -9,7 +9,8 @@ var dict = {
         'menu' : "Menu",
         'undo' : "Undo",
         'redo' : "Redo",
-        'language' : "Switch language"
+        'language' : "Switch language",
+        'pay' : 'Pay'
     },
 
     'sv' : {
@@ -20,12 +21,23 @@ var dict = {
         'menu' : "Meny",
         'undo' : "Ångra",
         'redo' : "Gör om",
-        'language' : "Byt språk"
+        'language' : "Byt språk",
+        'pay' : "Betala"
     }
 }
 
+function loadLanguage(){
+    var storedLanguage = window.sessionStorage.getItem("language")
+    if (typeof storedLanguage === 'undefined' || storedLanguage === null){
+        // language = "en";
+    } else {
+        language = storedLanguage;
+    }
+    window.sessionStorage.setItem("language", language);
+}
+
 function getStringFromDict(key){
-    console.log(dict[language][key]);
+    // console.log(dict[language][key]);
     return dict[language][key];
 }
 
@@ -36,6 +48,7 @@ function changeLang(){
     else{
         language = 'sv';
     } 
+    window.sessionStorage.setItem("language", language)
     applyLanguage();
 }
 
@@ -48,6 +61,8 @@ function applyLanguage(){
     $("#undoBtn").text(getStringFromDict('undo'));
     $("#redoBtn").text(getStringFromDict('redo'));
     $("#langBtn").text(getStringFromDict('language'));
+    $("#payBtn").text(getStringFromDict('pay'));
 }
 
+loadLanguage();
 applyLanguage();
