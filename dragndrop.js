@@ -65,24 +65,67 @@ function drag(dragevent) {
     dragevent.dataTransfer.setData("text", $("#" + dragevent.target.id).data("item"));
 }
 
-const createOrderTable = (table, dropevent) => {
+const createOrderTable1 = (dropevent) => {
 
-    const previousTable = table.cart;
-    dropevent.preventDefault();
-
-    var id = dropevent.target.id;
-
-
+    //dropevent.preventDefault();
+    const previousTable = table1.cart;
     return {
         execute() {
-            table.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+            table1.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
         },
-
+        
         undo() {
-            table.cart = previousTable1;
+            table1.cart = previousTable;
         }
     }
 }
+
+const createOrderTable2 = (dropevent) => {
+
+    //dropevent.preventDefault();
+    var previousTable = table2.cart;
+    return {
+        execute() {
+            table2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+        },
+        
+        undo() {
+            console.log(previousTable);
+            table2.cart = previousTable;
+        }
+    }
+}
+
+const createOrderTable3 = (dropevent) => {
+
+    //dropevent.preventDefault();
+    const previousTable = table3.cart;
+    return {
+        execute() {
+            table3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+        },
+        
+        undo() {
+            table3.cart = previousTable;
+        }
+    }
+}
+
+const createOrderTable4 = (dropevent) => {
+
+    //dropevent.preventDefault();
+    const previousTable = table4;
+    return {
+        execute() {
+            table4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
+        },
+        
+        undo() {
+            table4 = previousTable;
+        }
+    }
+}
+
 
 function drop(dropevent) {
     dropevent.preventDefault();
@@ -98,7 +141,7 @@ function drop(dropevent) {
             if ((namn in table1.amount)){
                 table1.amount[namn] +=1;
             }else{
-                createCommandManager(tables).doCommand(createOrderTable(table1, dropevent));
+                commandManager.doCommand(TABLEORDER1, dropevent);//createOrderTable(table1, dropevent));
                 table1.amount[namn] = 1;
             }
             break;
@@ -107,7 +150,7 @@ function drop(dropevent) {
             if ((namn in table2.amount)){
                 table2.amount[namn] +=1;
             }else{
-                createCommandManager(tables).doCommand(createOrderTable(table2, dropevent));
+                commandManager.doCommand(TABLEORDER2, dropevent);//createOrderTable(table2, dropevent));
                 table2.amount[namn] = 1;
             }
             break;
@@ -116,7 +159,7 @@ function drop(dropevent) {
             if ((namn in table3.amount)){
                 table3.amount[namn] +=1;
             }else{
-                createCommandManager(tables).doCommand(createOrderTable(table3, dropevent));
+                commandManager.doCommand(TABLEORDER3, dropevent);//createOrderTable(table3, dropevent));
                 //table3.cart.push(beverage);
                 table3.amount[namn] = 1;
             }
@@ -126,7 +169,7 @@ function drop(dropevent) {
             if ((namn in table4.amount)){
                 table4.amount[namn] +=1;
             }else{
-                createCommandManager(tables).doCommand(createOrderTable(table4, dropevent));
+                commandManager.doCommand(TABLEORDER4, dropevent);//createOrderTable(table4, dropevent));
                 table4.amount[namn] = 1;
             }
             break;
@@ -136,27 +179,32 @@ function drop(dropevent) {
     }
 }
 
-const TABLEORDER = "TABLEORDER"
+const TABLEORDER1 = "TABLEORDER1";
+const TABLEORDER2 = "TABLEORDER2";
+const TABLEORDER3 = "TABLEORDER3";
+const TABLEORDER4 = "TABLEORDER4";
 
-const commands = (target, tool) => {
-    [TABLEORDER]: createOrderTable(target, tool)
+const commands = {
+    [TABLEORDER1]: createOrderTable1,
+    [TABLEORDER2]: createOrderTable2,
+    [TABLEORDER3]: createOrderTable3,
+    [TABLEORDER4]: createOrderTable4
 }
 
-const createCommandManager = (target) => {
+const createCommandManager = () => {
     let history = [null];
     let position = 0;
-
+    
     return {
-        doCommand(commandType) {
+        doCommand(commandType, extra) {
             if (position < history.length -1) {
                 history = history.slice(0, position + 1)
             }
-
+            
             if (commands[commandType]) {
-                const concreteCommand = commands[commandType](target);
+                const concreteCommand = commands[commandType](extra);
                 history.push(concreteCommand);
                 position += 1;
-
                 concreteCommand.execute();
             }
         },
@@ -176,3 +224,4 @@ const createCommandManager = (target) => {
         }
     }
 }
+var commandManager = createCommandManager();
