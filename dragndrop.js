@@ -97,19 +97,19 @@ function drop(dropevent) {
     switch(id){
         case "table1":
             console.log("1");
-            createCommandManager(tables).doCommand(createOrderTable(table1, ));
+            createCommandManager(tables).doCommand(createOrderTable(table1, dropevent));
             break;
 
         case "table2":
-            createCommandManager(tables).doCommand(createOrderTable(table2));
+            createCommandManager(tables).doCommand(createOrderTable(table2, dropevent));
             break;
 
         case "table3":
-            createCommandManager(tables).doCommand(createOrderTable(table3));
+            createCommandManager(tables).doCommand(createOrderTable(table3, dropevent));
             break;
 
         case "table4":
-            createCommandManager(tables).doCommand(createOrderTable(table4));
+            createCommandManager(tables).doCommand(createOrderTable(table4, dropevent));
             break;
 
         default:
