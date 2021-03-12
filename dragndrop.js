@@ -1,49 +1,49 @@
-var table1 =
+var table1 = 
     {
-        "cart" :
+        "cart" : 
             [
 
             ],
-
+        
         "amount" :
             [
 
             ]
     };
 
-var table2 =
+var table2 = 
     {
-        "cart" :
+        "cart" : 
             [
 
             ],
-
+        
         "amount" :
             [
-
+                
             ]
     };
 
-var table3 =
+var table3 = 
     {
-        "cart" :
+        "cart" : 
             [
 
             ],
-
+        
         "amount" :
             [
-
+                
             ]
     };
 
-var table4 =
+var table4 = 
     {
-        "cart" :
+        "cart" : 
             [
 
             ],
-
+        
         "amount" :
             {
 
@@ -65,164 +65,89 @@ function drag(dragevent) {
     dragevent.dataTransfer.setData("text", $("#" + dragevent.target.id).data("item"));
 }
 
-const createOrderTable1 = (dropevent) => {
-
-    //dropevent.preventDefault();
-    const previousTable = table1.cart;
-    return {
-        execute() {
-            table1.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
-        },
-        
-        undo() {
-            table1.cart = previousTable;
-        }
-    }
-}
-
-const createOrderTable2 = (dropevent) => {
-
-    //dropevent.preventDefault();
-    var previousTable = table2.cart;
-    return {
-        execute() {
-            table2.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
-        },
-        
-        undo() {
-            console.log(previousTable);
-            table2.cart = previousTable;
-        }
-    }
-}
-
-const createOrderTable3 = (dropevent) => {
-
-    //dropevent.preventDefault();
-    const previousTable = table3.cart;
-    return {
-        execute() {
-            table3.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
-        },
-        
-        undo() {
-            table3.cart = previousTable;
-        }
-    }
-}
-
-const createOrderTable4 = (dropevent) => {
-
-    //dropevent.preventDefault();
-    const previousTable = table4;
-    return {
-        execute() {
-            table4.cart.push(JSON.parse(dropevent.dataTransfer.getData("text")));
-        },
-        
-        undo() {
-            table4 = previousTable;
-        }
-    }
-}
-
-
 function drop(dropevent) {
     dropevent.preventDefault();
+    
     var id = dropevent.target.id;
 
     let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
     // console.log(beverage.namn);
     // console.log(typeof(beverage));
+
+    tableHistory = tableHistory.slice(0, historyIndex + 1)
+    historyIndex++;
+    saveState();
     namn = beverage.namn
     switch(id){
         case "table1":
             // console.log("1");
             if ((namn in table1.amount)){
-                
                 table1.amount[namn] +=1;
             }else{
-                commandManager.doCommand(TABLEORDER1, dropevent);//createOrderTable(table1, dropevent));
+                table1.cart.push(beverage);
                 table1.amount[namn] = 1;
             }
             break;
-
+            
         case "table2":
             if ((namn in table2.amount)){
                 table2.amount[namn] +=1;
             }else{
-                commandManager.doCommand(TABLEORDER2, dropevent);//createOrderTable(table2, dropevent));
+                table2.cart.push(beverage);
                 table2.amount[namn] = 1;
             }
             break;
-
+            
         case "table3":
             if ((namn in table3.amount)){
                 table3.amount[namn] +=1;
             }else{
-                commandManager.doCommand(TABLEORDER3, dropevent);//createOrderTable(table3, dropevent));
-                //table3.cart.push(beverage);
+                table3.cart.push(beverage);
                 table3.amount[namn] = 1;
             }
             break;
-
+            
         case "table4":
             if ((namn in table4.amount)){
                 table4.amount[namn] +=1;
             }else{
-                commandManager.doCommand(TABLEORDER4, dropevent);//createOrderTable(table4, dropevent));
+                table4.cart.push(beverage);
                 table4.amount[namn] = 1;
             }
             break;
-
+            
         default:
             break;
     }
 }
 
-const TABLEORDER1 = "TABLEORDER1";
-const TABLEORDER2 = "TABLEORDER2";
-const TABLEORDER3 = "TABLEORDER3";
-const TABLEORDER4 = "TABLEORDER4";
-
-const commands = {
-    [TABLEORDER1]: createOrderTable1,
-    [TABLEORDER2]: createOrderTable2,
-    [TABLEORDER3]: createOrderTable3,
-    [TABLEORDER4]: createOrderTable4
-}
-
-const createCommandManager = () => {
-    let history = [null];
-    let position = 0;
+/*
+window.onload = beverageList;
+function beverageList() {
+    var listDiv = document.getElementById('list');
+    var ul=document.createElement('ul');
     
-    return {
-        doCommand(commandType, extra) {
-            if (position < history.length -1) {
-                history = history.slice(0, position + 1)
-            }
-            
-            if (commands[commandType]) {
-                const concreteCommand = commands[commandType](extra);
-                history.push(concreteCommand);
-                position += 1;
-                concreteCommand.execute();
-            }
-        },
-
-        undo() {
-            if (position > 0) {
-                history[position].undo();
-                position -= 1;
-            }
-        },
-
-        redo() {
-            if(position < history.length -1) {
-                position += 1;
-                history[position].execute();
-            }
-        }
+    listDiv.appendChild(ul);
+    
+    //List items
+    for (var i = 0; i < Object.keys(DB1.sprits).length; ++i) {
+        
+        var li= document.createElement('li');
+        li.setAttribute("ondragstart", "drag(event)");
+        li.setAttribute("draggable", "true");
+        li.setAttribute("id", i);
+        
+        //List properties of item
+        var innerUl = document.createElement('ul');
+        var name = document.createElement('li');
+        var price = document.createElement('li');
+        name.append(DB1.sprits[i].namn);   
+        price.append(DB1.sprits[i].prisinklmoms);
+        innerUl.appendChild(name); 
+        innerUl.appendChild(price); 
+        li.appendChild(innerUl);
+        ul.appendChild(li);
+        $("#" + i).data("item", JSON.stringify(DB1.sprits[i]));
     }
 }
-var commandManager = createCommandManager();
+*/
