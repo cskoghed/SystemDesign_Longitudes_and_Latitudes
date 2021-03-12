@@ -1,49 +1,45 @@
-var table1 = 
+var table1 =
     {
-        "cart" : 
+        "cart" :
             [
 
             ],
-        
         "amount" :
-            [
+            {
 
-            ]
+            }
     };
 
-var table2 = 
+var table2 =
     {
-        "cart" : 
+        "cart" :
             [
 
             ],
-        
         "amount" :
-            [
+            {
                 
-            ]
+            }
     };
 
-var table3 = 
+var table3 =
     {
-        "cart" : 
+        "cart" :
             [
 
             ],
-        
         "amount" :
-            [
-                
-            ]
+            {
+
+            }
     };
 
-var table4 = 
+var table4 =
     {
-        "cart" : 
+        "cart" :
             [
 
             ],
-        
         "amount" :
             {
 
@@ -57,6 +53,10 @@ var tables = {
     "table4": table4
 };
 
+var tableHistory = [JSON.stringify(tables)];
+
+var history_pos = 0;
+
 function allowDrop(allowdropevent) {
     allowdropevent.preventDefault();
 }
@@ -67,87 +67,79 @@ function drag(dragevent) {
 
 function drop(dropevent) {
     dropevent.preventDefault();
-    
     var id = dropevent.target.id;
 
     let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
-    // console.log(beverage.namn);
-    // console.log(typeof(beverage));
-
-    tableHistory = tableHistory.slice(0, historyIndex + 1)
-    historyIndex++;
-    saveState();
     namn = beverage.namn
     switch(id){
         case "table1":
-            // console.log("1");
             if ((namn in table1.amount)){
-                table1.amount[namn] +=1;
+                tables.table1.amount[namn] +=1;
             }else{
-                table1.cart.push(beverage);
-                table1.amount[namn] = 1;
+                tables.table1.cart.push(beverage);
+                tables.table1.amount[namn] = 1;
             }
+            saveState();
             break;
-            
+
         case "table2":
             if ((namn in table2.amount)){
-                table2.amount[namn] +=1;
+                tables.table2.amount[namn] +=1;
             }else{
-                table2.cart.push(beverage);
-                table2.amount[namn] = 1;
+                tables.table2.cart.push(beverage);
+                tables.table2.amount[namn] = 1;
             }
+            saveState();
             break;
-            
+
         case "table3":
             if ((namn in table3.amount)){
-                table3.amount[namn] +=1;
+                tables.table3.amount[namn] +=1;
             }else{
-                table3.cart.push(beverage);
-                table3.amount[namn] = 1;
+                tables.table3.cart.push(beverage);
+                tables.table3.amount[namn] = 1;
             }
+            saveState();
             break;
-            
+
         case "table4":
             if ((namn in table4.amount)){
-                table4.amount[namn] +=1;
+                tables.table4.amount[namn] +=1;
             }else{
-                table4.cart.push(beverage);
-                table4.amount[namn] = 1;
+                tables.table4.cart.push(beverage);
+                tables.table4.amount[namn] = 1;
             }
+            saveState();
             break;
-            
+
         default:
             break;
     }
 }
 
-/*
-window.onload = beverageList;
-function beverageList() {
-    var listDiv = document.getElementById('list');
-    var ul=document.createElement('ul');
-    
-    listDiv.appendChild(ul);
-    
-    //List items
-    for (var i = 0; i < Object.keys(DB1.sprits).length; ++i) {
-        
-        var li= document.createElement('li');
-        li.setAttribute("ondragstart", "drag(event)");
-        li.setAttribute("draggable", "true");
-        li.setAttribute("id", i);
-        
-        //List properties of item
-        var innerUl = document.createElement('ul');
-        var name = document.createElement('li');
-        var price = document.createElement('li');
-        name.append(DB1.sprits[i].namn);   
-        price.append(DB1.sprits[i].prisinklmoms);
-        innerUl.appendChild(name); 
-        innerUl.appendChild(price); 
-        li.appendChild(innerUl);
-        ul.appendChild(li);
-        $("#" + i).data("item", JSON.stringify(DB1.sprits[i]));
+function saveState() {
+    if (history_pos < tableHistory.length) {
+        tableHistory = tableHistory.slice(0, history_pos+1);
+        history_pos = tableHistory.length;
     }
+    else {
+        history_pos += 1;
+    }
+    tableHistory.push(JSON.stringify(tables));
 }
-*/
+
+function undo() {
+    if(history_pos <= 0){
+        return;
+    }
+    history_pos -= 1;
+    tables = JSON.parse(tableHistory[history_pos]);
+}
+
+function redo() {
+    if(history_pos >= tableHistory.length-1){
+        return;
+    }
+    history_pos += 1;
+    tables = JSON.parse(tableHistory[history_pos]);
+}
