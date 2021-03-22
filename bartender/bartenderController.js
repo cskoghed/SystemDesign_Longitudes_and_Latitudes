@@ -1,5 +1,7 @@
 // Functions
 
+
+// Show the all the available drinks
 function showMenu() {
     $.getJSON("beverages.json", function(db) {
 
@@ -11,11 +13,12 @@ function showMenu() {
         for(let i = 0; i < db.beverages.length; i++) {
 
             let beverage = db.beverages[i];
-            let beverageGroup = beverage.varugrupp.split(",")[0];
+            // let beverageGroup = beverage.varugrupp.split(",")[0];
+            let amountInStock = beverages_stockAmounts[beverage.namn];
 
             $("#bartender-items-list").append(`
                 <li class="item-row">
-                    <span style="position: relative;" draggable="true" ondragstart="drag(event)" id="` + "item" + i + `">${beverage.namn}</span>
+                    <span style="position: relative;" draggable="true" ondragstart="drag(event)" id="` + "item" + i + `">${beverage.namn} x${amountInStock}</span>
                     <span style="position: relative; float: right;">${beverage.prisinklmoms} kr</span>
                 </li>
             `);
@@ -24,6 +27,7 @@ function showMenu() {
     });
 };
 
+// Show the order for a table, which is found using the clickEvent
 function showOrder(clickEvent){
     tableClickEvent = clickEvent;
     tableName = clickEvent.srcElement.id;
@@ -53,15 +57,13 @@ function showOrder(clickEvent){
 
         $("#amt" + i).change(function() {
             let val = parseInt(this.value)
-            // if (val > 0){
-            //     table.amount[name] = val;
-            // } else {
-            //     delete table.amount[name];
-            //     table.cart.splice(i, 1);
-            // }
+
+
             table.amount[name] = val;
             
             updateSum(table["cart"]);
+
+            saveState();
         });
 
         $("#amt" + i).keypress(function(e) {
@@ -84,34 +86,23 @@ function showOrder(clickEvent){
     
 };
 
+// Show total sum of an order
 function updateSum(cart){
     sum = totalOrderSum(cart);
     $("#orderSum").text(sum + " kr");
 };
 
+// Erases current order
 function pay(){
-    if (tableName == "table1"){
-        table1["cart"] = [];
-        table1["amount"] = {};
-    }else if (tableName == "table2"){
-        table2["cart"] = [];
-        table2["amount"] = {};
-    }else if (tableName == "table3"){
-        table3["cart"] = [];
-        table3["amount"] = {};
-    } else {
-        table4["cart"] = [];
-        table4["amount"] = {};
-    }
+    let table = tables[tableName];
+    table["cart"] = [];
+    table["amount"] = {};
 
-    // table = tables["tableName"];
-    // table["cart"] = [];
-    // table["amount"] = {};
+    saveState();
     showOrder(tableClickEvent);
-
 }
 
-
+// Calculate total sum of an order
 function totalOrderSum() {
     let table = tables[tableName];
     let cart = table["cart"];
@@ -127,8 +118,22 @@ function totalOrderSum() {
     return sum;
 }
 
+function logOut() {
+    window.location.href = "../index.html"
+}
+
+function callGuards() {
+    $("#callGuardsBtn").css("background-color", "#a30101");
+    alert(dict[language]['callGuardsMessage']);
+
+    window.setTimeout(function() {
+        $("#callGuardsBtn").css("background-color", "black");
+    }, 10000);
+}
 
 
 // Main
 
-showMenu();
+$(window).ready(function() {
+    showMenu();
+});

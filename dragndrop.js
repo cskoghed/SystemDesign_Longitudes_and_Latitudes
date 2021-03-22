@@ -1,3 +1,4 @@
+// Table orders represented as objects.
 var table1 =
     {
         "cart" :
@@ -53,70 +54,39 @@ var tables = {
     "table4": table4
 };
 
-var tableHistory = [JSON.stringify(tables)];
+var tableHistory = [JSON.stringify(tables)];        // Load table orders in the undo-/redo-history
+var history_pos = 0;                                // Used as an index for tableHistory
 
-var history_pos = 0;
-
+// Lets us implement 'drag and drop'
 function allowDrop(allowdropevent) {
     allowdropevent.preventDefault();
 }
 
+// The drag in 'drag and drop'
 function drag(dragevent) {
     dragevent.dataTransfer.setData("text", $("#" + dragevent.target.id).data("item"));
 }
 
+// The drop in 'drag and drop'
 function drop(dropevent) {
     dropevent.preventDefault();
     var id = dropevent.target.id;
 
     let beverage = JSON.parse(dropevent.dataTransfer.getData("text"));
     namn = beverage.namn
-    switch(id){
-        case "table1":
-            if ((namn in table1.amount)){
-                tables.table1.amount[namn] +=1;
-            }else{
-                tables.table1.cart.push(beverage);
-                tables.table1.amount[namn] = 1;
-            }
-            saveState();
-            break;
-
-        case "table2":
-            if ((namn in table2.amount)){
-                tables.table2.amount[namn] +=1;
-            }else{
-                tables.table2.cart.push(beverage);
-                tables.table2.amount[namn] = 1;
-            }
-            saveState();
-            break;
-
-        case "table3":
-            if ((namn in table3.amount)){
-                tables.table3.amount[namn] +=1;
-            }else{
-                tables.table3.cart.push(beverage);
-                tables.table3.amount[namn] = 1;
-            }
-            saveState();
-            break;
-
-        case "table4":
-            if ((namn in table4.amount)){
-                tables.table4.amount[namn] +=1;
-            }else{
-                tables.table4.cart.push(beverage);
-                tables.table4.amount[namn] = 1;
-            }
-            saveState();
-            break;
-
-        default:
-            break;
+    
+    let table = tables[id];
+    if ((namn in table.amount)){
+        tables[id].amount[namn] +=1;
+    }else{
+        tables[id].cart.push(beverage);
+        tables[id].amount[namn] = 1;
     }
+    beverages_stockAmounts[namn]--;
+    showMenu();
+    saveState();
 }
-
+// Use this to make something undoable
 function saveState() {
     if (history_pos < tableHistory.length) {
         tableHistory = tableHistory.slice(0, history_pos+1);
@@ -134,6 +104,7 @@ function undo() {
     }
     history_pos -= 1;
     tables = JSON.parse(tableHistory[history_pos]);
+    showOrder(tableClickEvent);
 }
 
 function redo() {
@@ -142,4 +113,5 @@ function redo() {
     }
     history_pos += 1;
     tables = JSON.parse(tableHistory[history_pos]);
+    showOrder(tableClickEvent);
 }

@@ -1,8 +1,10 @@
 let tableHistory = [];
 let historyIndex = 0;
 
+// Save what the table orders look like in tableHistory
 function saveState(){
     let state = {}
+    state['beverages_stockAmounts'] = beverages_stockAmounts;
 
     let i = 0
     for (let table in tables){
@@ -11,26 +13,17 @@ function saveState(){
 
     }
 
-    // state["table1"] = table1;
-    // state["table2"] = table2;
-    // state["table3"] = table3;
-    // state["table4"] = table4;
-
     tableHistory.push(state)
 }
 
+// Load table orders from tableHistory
 function updateTables(){
     state = tableHistory[historyIndex];
+    beverages_stockAmounts = state['beverages_stockAmounts'];
 
     for (let i = 1; i < 5; i++){
         tables["table"+i] = state["table"+i]
     }
-
-
-    // table1 = state["table1"];
-    // table2 = state["table2"];
-    // table3 = state["table3"];
-    // table4 = state["table4"];
 
     showOrder(tableClickEvent);
 }

@@ -15,11 +15,14 @@ function gotoBartender(){
 }
 
 $(window).ready(function() {
-    // sessionStorage.setItem('key', 'value');
-    // var userMode = sessionStorage.getItem("userMode");
-    if (typeof(sessionStorage.getItem("userMode")) !== 'undefined') {
-        gotoLogin();
-    } else if (sessionStorage.getItem("userMode") == "Guest") {
-        gotoGuest();
-    }
+    // // sessionStorage.setItem('key', 'value');
+    // // var userMode = sessionStorage.getItem("userMode");
+    // if (typeof(window.sessionStorage.getItem("userMode")) !== 'undefined') {
+    //     // window.sessionStorage.setItem("userMode") = "Guest";
+    //     gotoLogin();
+    // } else if (sessionStorage.getItem("userMode") == "Guest") {
+    //     alert("guest bby");
+    //     // gotoGuest();
+    // }
+    gotoLogin();
 });

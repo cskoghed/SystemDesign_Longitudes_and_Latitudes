@@ -1,5 +1,6 @@
-var language = "en";
+var language = "en";            //The currently chosen language
 
+// Here we store all the strings for each language
 var dict = {
     'en' : {
         'sign-in' : "Sign in",
@@ -10,7 +11,11 @@ var dict = {
         'undo' : "Undo",
         'redo' : "Redo",
         'language' : "Switch language",
-        'pay' : 'Pay'
+        'pay' : 'Pay', 
+        'logout' : 'Log Out',
+        'login' : 'Login', 
+        'callGuardsBtn' : 'Call for guards', 
+        'callGuardsMessage' : "Guards are on their way."
     },
 
     'sv' : {
@@ -22,15 +27,18 @@ var dict = {
         'undo' : "Ångra",
         'redo' : "Gör om",
         'language' : "Byt språk",
-        'pay' : "Betala"
+        'pay' : "Betala", 
+        'logout' : "Logga ut",
+        'login' : 'Logga in', 
+        'callGuardsBtn' : 'Kalla på vakter', 
+        'callGuardsMessage' : "Vakter är på väg."
     }
 }
 
+// Sets the language to what's been saved in window.sessionStorage
 function loadLanguage(){
     var storedLanguage = window.sessionStorage.getItem("language")
-    if (typeof storedLanguage === 'undefined' || storedLanguage === null){
-        // language = "en";
-    } else {
+    if (!(typeof storedLanguage === 'undefined' || storedLanguage === null)){
         language = storedLanguage;
     }
     window.sessionStorage.setItem("language", language);
@@ -41,6 +49,7 @@ function getStringFromDict(key){
     return dict[language][key];
 }
 
+// Change language and save it to window.sessionStorage
 function changeLang(){
     if (language == 'sv'){
         language = 'en';
@@ -52,6 +61,7 @@ function changeLang(){
     applyLanguage();
 }
 
+// Apply the current language
 function applyLanguage(){
     $("#loginBtn").val(getStringFromDict('sign-in'));
     $("#customerBtn").val(getStringFromDict('guest'));
@@ -62,6 +72,9 @@ function applyLanguage(){
     $("#redoBtn").text(getStringFromDict('redo'));
     $("#langBtn").text(getStringFromDict('language'));
     $("#payBtn").text(getStringFromDict('pay'));
+    $("#logOutBtn").text(getStringFromDict('logout'));
+    $("#loginText").text(getStringFromDict('login'));
+    $("#callGuardsBtn").text(getStringFromDict('callGuardsBtn'));
 }
 
 loadLanguage();

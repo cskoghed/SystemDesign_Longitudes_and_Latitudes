@@ -111,9 +111,6 @@ body,
 
 #items {
   height: 100vh;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* overflow-y: scroll; */
   overflow: scroll;
 }
 
@@ -124,34 +121,15 @@ body,
   margin: 0;
   padding: 0;
   color: rgb(82, 82, 82);
-  /* overflow: -moz-hidden-unscrollable; */
 }
 
 /* An item row is a row in the right-most menu. */
 .item-row {
   color: rgb(0, 0, 0);
   font-size: 22px;
-
-  /* padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 20px; */
-
   padding-top: 10%;
-  /* padding-left: 5%;
-  padding-right: 5%; */
-
-  /* padding: 5%; */
-
   margin-left: 5%;
   margin-right: 5%;
-
-  /* margin: 5%; */
-
-  /* padding-top: 12px; */
-  /* padding-bottom: 12px; */
-
-  /* border-bottom: 2px solid rgb(182, 182, 182); */
-  /* border-top: 1px solid rgb(182, 182, 182); */
   border-bottom: 2px solid rgb(182, 182, 182);
 }
 
@@ -188,15 +166,31 @@ body,
   font-size: 16px;
 }
 
+#langBtn, 
+#logOutBtn {
+  margin: 0;
+  position: relative;
+  top: 5%;
+  left: 1%;
+  /* -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+#callGuardsBtn {
+  background-color: black;
+  /* border-color: #a30101; */
+  
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 
 #orderBar {
-  /* z-index: 5;
-  position: relative; */
-  /* height: 11vh; */
   position: fixed;
-  /* width: inherit; */
-
-  /* padding: 5%; */
   border-top: white solid;
   width: 25vw;
   font-size: 22px;;
@@ -207,25 +201,6 @@ body,
 
 }
 
-/* #orderSum {
-  float: center;
-  top: 
-  transform: translate(-10%, -45%);*
-} */
-
 #payBtn {
   float: left;
 }
-
-/* For presentation only, no need to copy the code below */
-/* .grid-container * {
-  outline: 1px solid red;
-  position: relative;
-}
-
-.grid-container *:after {
-  content: attr(class);
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
